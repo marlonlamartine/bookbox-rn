@@ -10,22 +10,10 @@
 
 import 'react-native-gesture-handler';
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import Home from './src/screens/Home';
-import Reports from './src/screens/Reports';
+import Routes from './src/routes';
 
 const App = () => {
-  const Drawer = createDrawerNavigator();
-
-  return (
-    <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={Home} />
-        <Drawer.Screen name="Reports" component={Reports} />
-      </Drawer.Navigator>
-    </NavigationContainer>
-  );
+  return <Routes />;
 };
 
 export default App;
