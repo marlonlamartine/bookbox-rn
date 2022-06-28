@@ -3,4 +3,5 @@ export type RootStackParams = {
   Reports: any;
   Login: any;
   Register: any;
+  NewTransaction: any;
 };

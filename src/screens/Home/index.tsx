@@ -1,10 +1,22 @@
 import {useNavigation} from '@react-navigation/native';
-import {Button, Text, View} from 'react-native';
+import {Text} from 'react-native';
 import * as React from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParams} from '../../types/routes';
 import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
-//import {FirebaseAuthTypes} from '@react-native-firebase/auth';
+import {
+  AmountSection,
+  Container,
+  CreateTransactionButton,
+  DateSection,
+  ListSection,
+  SignOutButton,
+  SignOutSection,
+  TodaySection,
+  Top,
+  TotalSection,
+  VerticalLine,
+} from './style';
 
 const Home = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
@@ -22,19 +34,35 @@ const Home = () => {
   };
 
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Página Home</Text>
-      {user ? (
-        <Button onPress={handlesignOut} title="SignOut" />
-      ) : (
-        <Button
-          onPress={() => {
-            navigation.navigate('Login');
-          }}
-          title="Login"
-        />
-      )}
-    </View>
+    <Container>
+      <Top>
+        <SignOutSection>
+          <Text style={{color: 'white'}}>Olá, {user?.email}</Text>
+          <SignOutButton onPress={handlesignOut}>
+            <Text style={{color: 'white'}}>Sair</Text>
+          </SignOutButton>
+        </SignOutSection>
+        <AmountSection>
+          <TotalSection>
+            <Text style={{color: 'white', fontSize: 20}}>Total</Text>
+            <Text style={{color: 'white', fontSize: 24}}>R$ 0,00</Text>
+          </TotalSection>
+          <VerticalLine />
+          <TodaySection>
+            <Text style={{color: 'white', fontSize: 20}}>Hoje</Text>
+            <Text style={{color: 'white', fontSize: 24}}>R$ 0,00</Text>
+          </TodaySection>
+        </AmountSection>
+      </Top>
+      <DateSection>
+        <Text style={{color: '#556080'}}>Sábado - 18/06/2022</Text>
+      </DateSection>
+      <ListSection />
+      <CreateTransactionButton
+        onPress={() => navigation.navigate('NewTransaction')}>
+        <Text style={{color: 'white'}}>Nova Transação</Text>
+      </CreateTransactionButton>
+    </Container>
   );
 };
 
